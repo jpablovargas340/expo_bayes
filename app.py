@@ -274,7 +274,7 @@ st.markdown("---")
 # TABS PRINCIPALES
 # ═══════════════════════════════════════════════════════════
 (tab_inicio, tab_bayes, tab_dist, tab_inf,
- tab_mcmc, tab_reg, tab_sel, tab_mc) = st.tabs([
+ tab_mcmc, tab_reg, tab_sel, tab_mc, tab_refs) = st.tabs([
     "🏠 Inicio",
     "1 · Probabilidad y Bayes",
     "2 · Distribuciones",
@@ -283,6 +283,7 @@ st.markdown("---")
     "5 · Regresión Bayesiana",
     "6 · Selección de Modelos",
     "7 · Monte Carlo",
+    "📚 Referencias",
 ])
 
 # 
@@ -290,7 +291,7 @@ st.markdown("---")
 # 
 with tab_inicio:
     col1, col2, col3, col4 = st.columns(4)
-    col1.metric("Temas", "7")
+    col1.metric("Temas", "8")
     col2.metric("Módulos con código", "7")
     col3.metric("Algoritmos clave", "3+")
     col4.metric("Distribuciones", "6+")
@@ -319,6 +320,7 @@ with tab_inicio:
     | 5 · Regresión Bayesiana | Incertidumbre en rectas de regresión |
     | 6 · Selección de Modelos | BIC y Factor de Bayes |
     | 7 · Monte Carlo | Estimación de π, integración, convergencia |
+    | Referencias | Fuente bibliográfica principal |
     """)
 
 # 
@@ -1666,3 +1668,48 @@ print("Multiplicar N por 100 → error se divide por 10 (≈ √100 = 10)")
             "La <strong>línea roja punteada</strong> es la referencia exacta 1/√N. "
             "Que las tres sean paralelas confirma que el error MC sigue esta ley. "
             "Para bajar el error de 0.1 a 0.01 hay que pasar de N ≈ 100 a N ≈ 10,000.")
+
+# 
+# TAB 8 — REFERENCIAS
+# 
+with tab_refs:
+    st.markdown("## Referencias")
+    interp("Esta exposición se apoya principalmente en el capítulo 14 del texto de Correa Morales "
+           "y Barrera Causil, que presenta herramientas de software para estadística bayesiana y "
+           "sirve como puente entre la teoría bayesiana y su implementación computacional.")
+
+    st.markdown("""
+    <div class="card">
+    <div class="section-label">fuente principal</div>
+    <h3 style="color:#58a6ff;margin-top:0">Introducción a la Estadística Bayesiana</h3>
+    <p><strong>Autores:</strong> Juan Carlos Correa Morales y Carlos Javier Barrera Causil</p>
+    <p><strong>Editorial:</strong> Instituto Tecnológico Metropolitano - ITM, Medellín</p>
+    <p><strong>Edición:</strong> 1.ª edición, 2018</p>
+    <p><strong>Capítulo usado:</strong> Capítulo 14, <em>Software para estadística bayesiana</em></p>
+    <p><strong>ISBN:</strong> 978-958-5414-24-2</p>
+    <p><strong>DOI:</strong>
+        <a href="https://dx.doi.org/10.22430/9789585414242" target="_blank" style="color:#58a6ff">
+        10.22430/9789585414242
+        </a>
+    </p>
+    <p><strong>Repositorio:</strong>
+        <a href="https://hdl.handle.net/20.500.12622/1793" target="_blank" style="color:#58a6ff">
+        https://hdl.handle.net/20.500.12622/1793
+        </a>
+    </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("### Relación con esta app")
+    st.markdown("""
+    | Tema de la app | Relación con la fuente |
+    |----------------|------------------------|
+    | Estadística bayesiana computacional | Motivación para usar software en problemas bayesianos |
+    | MCMC | Implementación didáctica de simulación y cadenas de Markov |
+    | Monte Carlo | Uso de simulación para aproximar cantidades difíciles |
+    | Selección de modelos | Criterios y evidencia para comparar modelos |
+    | Regresión bayesiana | Ejemplo aplicado de inferencia con incertidumbre posterior |
+    """)
+
+    nota("Las implementaciones de esta app fueron reescritas en Python con Streamlit, NumPy, SciPy y Matplotlib "
+         "para fines de visualización interactiva. No corresponden a una reproducción literal del código del libro.")
